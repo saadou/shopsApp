@@ -1,0 +1,296 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Retard
+ *
+ * @ORM\Table(name="retard")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\RetardRepository")
+ */
+class Retard
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="etudiantName", type="string", length=255, nullable=true)
+     */
+    private $etudiantName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="etudiantID", type="string", length=255, nullable=true)
+     */
+    private $etudiantID;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateRetard", type="date", nullable=true)
+     */
+    private $dateRetard;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="heureRetard", type="time", nullable=true)
+     */
+    private $heureRetard;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="duree", type="string", length=255, nullable=true)
+     */
+    private $duree;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="observation", type="text", nullable=true)
+     */
+    private $observation;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="author", type="string", length=255, nullable=true)
+     */
+    private $author;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="authorID", type="string", length=255, nullable=true)
+     */
+    private $authorID;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Groupe")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $niveau;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="niveauID", type="string", length=255, nullable=true)
+     */
+    private $niveauID;
+
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set etudiantName
+     *
+     * @param string $etudiantName
+     *
+     * @return Retard
+     */
+    public function setEtudiantName($etudiantName)
+    {
+        $this->etudiantName = $etudiantName;
+
+        return $this;
+    }
+
+    /**
+     * Get etudiantName
+     *
+     * @return string
+     */
+    public function getEtudiantName()
+    {
+        return $this->etudiantName;
+    }
+
+    /**
+     * Set etudiantID
+     *
+     * @param string $etudiantID
+     *
+     * @return Retard
+     */
+    public function setEtudiantID($etudiantID)
+    {
+        $this->etudiantID = $etudiantID;
+
+        return $this;
+    }
+
+    /**
+     * Get etudiantID
+     *
+     * @return string
+     */
+    public function getEtudiantID()
+    {
+        return $this->etudiantID;
+    }
+
+    /**
+     * Set dateRetard
+     *
+     * @param \DateTime $dateRetard
+     *
+     * @return Retard
+     */
+    public function setDateRetard($dateRetard)
+    {
+        $this->dateRetard = $dateRetard;
+
+        return $this;
+    }
+
+    /**
+     * Get dateRetard
+     *
+     * @return \DateTime
+     */
+    public function getDateRetard()
+    {
+        return $this->dateRetard;
+    }
+
+    /**
+     * Set heureRetard
+     *
+     * @param \DateTime $heureRetard
+     *
+     * @return Retard
+     */
+    public function setHeureRetard($heureRetard)
+    {
+        $this->heureRetard = $heureRetard;
+
+        return $this;
+    }
+
+    /**
+     * Get heureRetard
+     *
+     * @return \DateTime
+     */
+    public function getHeureRetard()
+    {
+        return $this->heureRetard;
+    }
+
+    /**
+     * Set duree
+     *
+     * @param string $duree
+     *
+     * @return Retard
+     */
+    public function setDuree($duree)
+    {
+        $this->duree = $duree;
+
+        return $this;
+    }
+
+    /**
+     * Get duree
+     *
+     * @return string
+     */
+    public function getDuree()
+    {
+        return $this->duree;
+    }
+
+    /**
+     * Set observation
+     *
+     * @param string $observation
+     *
+     * @return Retard
+     */
+    public function setObservation($observation)
+    {
+        $this->observation = $observation;
+
+        return $this;
+    }
+
+    /**
+     * Get observation
+     *
+     * @return string
+     */
+    public function getObservation()
+    {
+        return $this->observation;
+    }
+
+    /**
+     * Set author
+     *
+     * @param string $author
+     *
+     * @return Retard
+     */
+    public function setAuthor($author)
+    {
+        $this->author = $author;
+
+        return $this;
+    }
+
+    /**
+     * Get author
+     *
+     * @return string
+     */
+    public function getAuthor()
+    {
+        return $this->author;
+    }
+
+    /**
+     * Set authorID
+     *
+     * @param string $authorID
+     *
+     * @return Retard
+     */
+    public function setAuthorID($authorID)
+    {
+        $this->authorID = $authorID;
+
+        return $this;
+    }
+
+    /**
+     * Get authorID
+     *
+     * @return string
+     */
+    public function getAuthorID()
+    {
+        return $this->authorID;
+    }
+}
+

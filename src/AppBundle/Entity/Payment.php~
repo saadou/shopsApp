@@ -1,0 +1,692 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Payment
+ *
+ * @ORM\Table(name="payment")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\PaymentRepository")
+ */
+class Payment
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\School")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $school;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="datePayment", type="date", nullable=true)
+     */
+    private $datePayment;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nomPayeur", type="string", length=255, nullable=true)
+     */
+    private $nomPayeur;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="niveau", type="string", length=255, nullable=true)
+     */
+    private $niveau;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="niveauID", type="string", length=100, nullable=true)
+     */
+    private $niveauID;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="anneeScolaire", type="string", length=255, nullable=true)
+     */
+    private $anneeScolaire;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="etudiantName", type="string", length=255, nullable=true)
+     */
+    private $etudiantName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="etudiantDisplayName", type="string", length=255, nullable=true)
+     */
+    private $etudiantDisplayName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="etudiantID", type="string", length=100, nullable=true)
+     */
+    private $etudiantID;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="modePayment", type="string", length=255, nullable=true)
+     */
+    private $modePayment;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="montant", type="string", length=255, nullable=true)
+     */
+    private $montant;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="reste", type="string", length=255, nullable=true)
+     */
+    private $reste;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="statusPayment", type="string", length=255, nullable=true)
+     */
+    private $statusPayment;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="delaiPayment", type="date", nullable=true)
+     */
+    private $delaiPayment;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="parentName", type="string", length=255, nullable=true)
+     */
+    private $parentName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="parentDisplayName", type="string", length=255, nullable=true)
+     */
+    private $parentDisplayName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="parentID", type="string", length=255, nullable=true)
+     */
+    private $parentID;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="qte", type="integer", nullable=true)
+     */
+    private $qte;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="prixUnitaire", type="string", length=255, nullable=true)
+     */
+    private $prixUnitaire;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="prixHT", type="string", length=255, nullable=true)
+     */
+    private $prixHT;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="prixTTC", type="string", length=255, nullable=true)
+     */
+    private $prixTTC;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="taux", type="string", length=255, nullable=true)
+     */
+    private $taux;
+
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set datePayment
+     *
+     * @param \DateTime $datePayment
+     *
+     * @return Payment
+     */
+    public function setDatePayment($datePayment)
+    {
+        $this->datePayment = $datePayment;
+
+        return $this;
+    }
+
+    /**
+     * Get datePayment
+     *
+     * @return \DateTime
+     */
+    public function getDatePayment()
+    {
+        return $this->datePayment;
+    }
+
+    /**
+     * Set nomPayeur
+     *
+     * @param string $nomPayeur
+     *
+     * @return Payment
+     */
+    public function setNomPayeur($nomPayeur)
+    {
+        $this->nomPayeur = $nomPayeur;
+
+        return $this;
+    }
+
+    /**
+     * Get nomPayeur
+     *
+     * @return string
+     */
+    public function getNomPayeur()
+    {
+        return $this->nomPayeur;
+    }
+
+    /**
+     * Set niveau
+     *
+     * @param string $niveau
+     *
+     * @return Payment
+     */
+    public function setNiveau($niveau)
+    {
+        $this->niveau = $niveau;
+
+        return $this;
+    }
+
+    /**
+     * Get niveau
+     *
+     * @return string
+     */
+    public function getNiveau()
+    {
+        return $this->niveau;
+    }
+
+    /**
+     * Set niveauID
+     *
+     * @param string $niveauID
+     *
+     * @return Payment
+     */
+    public function setNiveauID($niveauID)
+    {
+        $this->niveauID = $niveauID;
+
+        return $this;
+    }
+
+    /**
+     * Get niveauID
+     *
+     * @return string
+     */
+    public function getNiveauID()
+    {
+        return $this->niveauID;
+    }
+
+    /**
+     * Set anneeScolaire
+     *
+     * @param string $anneeScolaire
+     *
+     * @return Payment
+     */
+    public function setAnneeScolaire($anneeScolaire)
+    {
+        $this->anneeScolaire = $anneeScolaire;
+
+        return $this;
+    }
+
+    /**
+     * Get anneeScolaire
+     *
+     * @return string
+     */
+    public function getAnneeScolaire()
+    {
+        return $this->anneeScolaire;
+    }
+
+    /**
+     * Set etudiantName
+     *
+     * @param string $etudiantName
+     *
+     * @return Payment
+     */
+    public function setEtudiantName($etudiantName)
+    {
+        $this->etudiantName = $etudiantName;
+
+        return $this;
+    }
+
+    /**
+     * Get etudiantName
+     *
+     * @return string
+     */
+    public function getEtudiantName()
+    {
+        return $this->etudiantName;
+    }
+
+    /**
+     * Set etudiantDisplayName
+     *
+     * @param string $etudiantDisplayName
+     *
+     * @return Payment
+     */
+    public function setEtudiantDisplayName($etudiantDisplayName)
+    {
+        $this->etudiantDisplayName = $etudiantDisplayName;
+
+        return $this;
+    }
+
+    /**
+     * Get etudiantDisplayName
+     *
+     * @return string
+     */
+    public function getEtudiantDisplayName()
+    {
+        return $this->etudiantDisplayName;
+    }
+
+    /**
+     * Set etudiantID
+     *
+     * @param string $etudiantID
+     *
+     * @return Payment
+     */
+    public function setEtudiantID($etudiantID)
+    {
+        $this->etudiantID = $etudiantID;
+
+        return $this;
+    }
+
+    /**
+     * Get etudiantID
+     *
+     * @return string
+     */
+    public function getEtudiantID()
+    {
+        return $this->etudiantID;
+    }
+
+    /**
+     * Set modePayment
+     *
+     * @param string $modePayment
+     *
+     * @return Payment
+     */
+    public function setModePayment($modePayment)
+    {
+        $this->modePayment = $modePayment;
+
+        return $this;
+    }
+
+    /**
+     * Get modePayment
+     *
+     * @return string
+     */
+    public function getModePayment()
+    {
+        return $this->modePayment;
+    }
+
+    /**
+     * Set montant
+     *
+     * @param string $montant
+     *
+     * @return Payment
+     */
+    public function setMontant($montant)
+    {
+        $this->montant = $montant;
+
+        return $this;
+    }
+
+    /**
+     * Get montant
+     *
+     * @return string
+     */
+    public function getMontant()
+    {
+        return $this->montant;
+    }
+
+    /**
+     * Set reste
+     *
+     * @param string $reste
+     *
+     * @return Payment
+     */
+    public function setReste($reste)
+    {
+        $this->reste = $reste;
+
+        return $this;
+    }
+
+    /**
+     * Get reste
+     *
+     * @return string
+     */
+    public function getReste()
+    {
+        return $this->reste;
+    }
+
+    /**
+     * Set statusPayment
+     *
+     * @param string $statusPayment
+     *
+     * @return Payment
+     */
+    public function setStatusPayment($statusPayment)
+    {
+        $this->statusPayment = $statusPayment;
+
+        return $this;
+    }
+
+    /**
+     * Get statusPayment
+     *
+     * @return string
+     */
+    public function getStatusPayment()
+    {
+        return $this->statusPayment;
+    }
+
+    /**
+     * Set delaiPayment
+     *
+     * @param \DateTime $delaiPayment
+     *
+     * @return Payment
+     */
+    public function setDelaiPayment($delaiPayment)
+    {
+        $this->delaiPayment = $delaiPayment;
+
+        return $this;
+    }
+
+    /**
+     * Get delaiPayment
+     *
+     * @return \DateTime
+     */
+    public function getDelaiPayment()
+    {
+        return $this->delaiPayment;
+    }
+
+    /**
+     * Set parentName
+     *
+     * @param string $parentName
+     *
+     * @return Payment
+     */
+    public function setParentName($parentName)
+    {
+        $this->parentName = $parentName;
+
+        return $this;
+    }
+
+    /**
+     * Get parentName
+     *
+     * @return string
+     */
+    public function getParentName()
+    {
+        return $this->parentName;
+    }
+
+    /**
+     * Set parentDisplayName
+     *
+     * @param string $parentDisplayName
+     *
+     * @return Payment
+     */
+    public function setParentDisplayName($parentDisplayName)
+    {
+        $this->parentDisplayName = $parentDisplayName;
+
+        return $this;
+    }
+
+    /**
+     * Get parentDisplayName
+     *
+     * @return string
+     */
+    public function getParentDisplayName()
+    {
+        return $this->parentDisplayName;
+    }
+
+    /**
+     * Set parentID
+     *
+     * @param string $parentID
+     *
+     * @return Payment
+     */
+    public function setParentID($parentID)
+    {
+        $this->parentID = $parentID;
+
+        return $this;
+    }
+
+    /**
+     * Get parentID
+     *
+     * @return string
+     */
+    public function getParentID()
+    {
+        return $this->parentID;
+    }
+
+    /**
+     * Set qte
+     *
+     * @param integer $qte
+     *
+     * @return Payment
+     */
+    public function setQte($qte)
+    {
+        $this->qte = $qte;
+
+        return $this;
+    }
+
+    /**
+     * Get qte
+     *
+     * @return int
+     */
+    public function getQte()
+    {
+        return $this->qte;
+    }
+
+    /**
+     * Set prixUnitaire
+     *
+     * @param string $prixUnitaire
+     *
+     * @return Payment
+     */
+    public function setPrixUnitaire($prixUnitaire)
+    {
+        $this->prixUnitaire = $prixUnitaire;
+
+        return $this;
+    }
+
+    /**
+     * Get prixUnitaire
+     *
+     * @return string
+     */
+    public function getPrixUnitaire()
+    {
+        return $this->prixUnitaire;
+    }
+
+    /**
+     * Set prixHT
+     *
+     * @param string $prixHT
+     *
+     * @return Payment
+     */
+    public function setPrixHT($prixHT)
+    {
+        $this->prixHT = $prixHT;
+
+        return $this;
+    }
+
+    /**
+     * Get prixHT
+     *
+     * @return string
+     */
+    public function getPrixHT()
+    {
+        return $this->prixHT;
+    }
+
+    /**
+     * Set prixTTC
+     *
+     * @param string $prixTTC
+     *
+     * @return Payment
+     */
+    public function setPrixTTC($prixTTC)
+    {
+        $this->prixTTC = $prixTTC;
+
+        return $this;
+    }
+
+    /**
+     * Get prixTTC
+     *
+     * @return string
+     */
+    public function getPrixTTC()
+    {
+        return $this->prixTTC;
+    }
+
+    /**
+     * Set taux
+     *
+     * @param string $taux
+     *
+     * @return Payment
+     */
+    public function setTaux($taux)
+    {
+        $this->taux = $taux;
+
+        return $this;
+    }
+
+    /**
+     * Get taux
+     *
+     * @return string
+     */
+    public function getTaux()
+    {
+        return $this->taux;
+    }
+}
+

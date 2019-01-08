@@ -1,0 +1,227 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Infermerie
+ *
+ * @ORM\Table(name="infermerie")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\InfermerieRepository")
+ */
+class Infermerie
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\School")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $school;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="etudiantName", type="string", length=255, nullable=true)
+     */
+    private $etudiantName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="etudiantID", type="string", length=100, nullable=true)
+     */
+    private $etudiantID;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="niveau", type="string", length=255, nullable=true)
+     */
+    private $niveau;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="niveauID", type="string", length=100, nullable=true)
+     */
+    private $niveauID;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="datePassage", type="date", nullable=true)
+     */
+    private $datePassage;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text", nullable=true)
+     */
+    private $description;
+
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set etudiantName
+     *
+     * @param string $etudiantName
+     *
+     * @return Infermerie
+     */
+    public function setEtudiantName($etudiantName)
+    {
+        $this->etudiantName = $etudiantName;
+
+        return $this;
+    }
+
+    /**
+     * Get etudiantName
+     *
+     * @return string
+     */
+    public function getEtudiantName()
+    {
+        return $this->etudiantName;
+    }
+
+    /**
+     * Set etudiantID
+     *
+     * @param string $etudiantID
+     *
+     * @return Infermerie
+     */
+    public function setEtudiantID($etudiantID)
+    {
+        $this->etudiantID = $etudiantID;
+
+        return $this;
+    }
+
+    /**
+     * Get etudiantID
+     *
+     * @return string
+     */
+    public function getEtudiantID()
+    {
+        return $this->etudiantID;
+    }
+
+    /**
+     * Set niveau
+     *
+     * @param string $niveau
+     *
+     * @return Infermerie
+     */
+    public function setNiveau($niveau)
+    {
+        $this->niveau = $niveau;
+
+        return $this;
+    }
+
+    /**
+     * Get niveau
+     *
+     * @return string
+     */
+    public function getNiveau()
+    {
+        return $this->niveau;
+    }
+
+    /**
+     * Set niveauID
+     *
+     * @param string $niveauID
+     *
+     * @return Infermerie
+     */
+    public function setNiveauID($niveauID)
+    {
+        $this->niveauID = $niveauID;
+
+        return $this;
+    }
+
+    /**
+     * Get niveauID
+     *
+     * @return string
+     */
+    public function getNiveauID()
+    {
+        return $this->niveauID;
+    }
+
+    /**
+     * Set datePassage
+     *
+     * @param \DateTime $datePassage
+     *
+     * @return Infermerie
+     */
+    public function setDatePassage($datePassage)
+    {
+        $this->datePassage = $datePassage;
+
+        return $this;
+    }
+
+    /**
+     * Get datePassage
+     *
+     * @return \DateTime
+     */
+    public function getDatePassage()
+    {
+        return $this->datePassage;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return Infermerie
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+}
+

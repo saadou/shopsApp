@@ -1,0 +1,12 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_host: 127.0.0.1
+    database_port: '8889'
+    database_name: shopsApp
+    database_user: root
+    database_password: root
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: saadlah.bella@gmail.com
+    mailer_password: '123'
+    secret: f313fb12ef09170c6ba58cff0910982bf57aeae3

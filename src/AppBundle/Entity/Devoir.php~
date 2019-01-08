@@ -1,0 +1,349 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Devoir
+ *
+ * @ORM\Table(name="devoir")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\DevoirRepository")
+ */
+class Devoir
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Groupe")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $niveau;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="titre", type="string", length=255, nullable=true)
+     */
+    private $titre;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text", nullable=true)
+     */
+    private $description;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="matiere", type="string", length=255, nullable=true)
+     */
+    private $matiere;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="matiereID", type="string", length=255, nullable=true)
+     */
+    private $matiereID;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="niveauID", type="string", length=255, nullable=true)
+     */
+     private $niveauID;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="dateDelai", type="date", nullable=true)
+     */
+    private $dateDelai;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="dateCreation", type="date", nullable=true)
+     */
+    private $dateCreation;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="author", type="string", length=255, nullable=true)
+     */
+    private $author;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="authorID", type="string", length=255, nullable=true)
+     */
+    private $authorID;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="schoolID", type="string", length=255, nullable=true)
+     */
+    private $schoolID;
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set titre
+     *
+     * @param string $titre
+     *
+     * @return Devoir
+     */
+    public function setTitre($titre)
+    {
+        $this->titre = $titre;
+
+        return $this;
+    }
+
+    /**
+     * Get titre
+     *
+     * @return string
+     */
+    public function getTitre()
+    {
+        return $this->titre;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return Devoir
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+
+
+    /**
+     * Set matiere
+     *
+     * @param string $matiere
+     *
+     * @return Devoir
+     */
+    public function setMatiere($matiere)
+    {
+        $this->matiere = $matiere;
+
+        return $this;
+    }
+
+    /**
+     * Get matiere
+     *
+     * @return string
+     */
+    public function getMatiere()
+    {
+        return $this->matiere;
+    }
+
+    /**
+     * Set matiereID
+     *
+     * @param string $matiereID
+     *
+     * @return Devoir
+     */
+    public function setMatiereID($matiereID)
+    {
+        $this->matiereID = $matiereID;
+
+        return $this;
+    }
+
+    /**
+     * Get matiereID
+     *
+     * @return string
+     */
+    public function getMatiereID()
+    {
+        return $this->matiereID;
+    }
+
+    /**
+     * Set niveauID
+     *
+     * @param string $niveauID
+     *
+     * @return Devoir
+     */
+    public function setNiveauID($niveauID)
+    {
+        $this->niveauID = $niveauID;
+
+        return $this;
+    }
+
+    /**
+     * Get niveauID
+     *
+     * @return string
+     */
+    public function getNiveauID()
+    {
+        return $this->niveauID;
+    }
+
+    /**
+     * Set dateDelai
+     *
+     * @param \DateTime $dateDelai
+     *
+     * @return Devoir
+     */
+    public function setDateDelai($dateDelai)
+    {
+        $this->dateDelai = $dateDelai;
+
+        return $this;
+    }
+
+    /**
+     * Get dateDelai
+     *
+     * @return \DateTime
+     */
+    public function getDateDelai()
+    {
+        return $this->dateDelai;
+    }
+
+    /**
+     * Set dateCreation
+     *
+     * @param \DateTime $dateCreation
+     *
+     * @return Devoir
+     */
+    public function setDateCreation($dateCreation)
+    {
+        $this->dateCreation = $dateCreation;
+
+        return $this;
+    }
+
+    /**
+     * Get dateCreation
+     *
+     * @return \DateTime
+     */
+    public function getDateCreation()
+    {
+        return $this->dateCreation;
+    }
+
+    /**
+     * Set author
+     *
+     * @param string $author
+     *
+     * @return Devoir
+     */
+    public function setAuthor($author)
+    {
+        $this->author = $author;
+
+        return $this;
+    }
+
+    /**
+     * Get author
+     *
+     * @return string
+     */
+    public function getAuthor()
+    {
+        return $this->author;
+    }
+
+    /**
+     * Set authorID
+     *
+     * @param string $authorID
+     *
+     * @return Devoir
+     */
+    public function setAuthorID($authorID)
+    {
+        $this->authorID = $authorID;
+
+        return $this;
+    }
+
+    /**
+     * Get authorID
+     *
+     * @return string
+     */
+    public function getAuthorID()
+    {
+        return $this->authorID;
+    }
+
+    /**
+     * Set schoolID
+     *
+     * @param string $schoolID
+     *
+     * @return Devoir
+     */
+    public function setSchoolID($schoolID)
+    {
+        $this->schoolID = $schoolID;
+
+        return $this;
+    }
+
+    /**
+     * Get schoolID
+     *
+     * @return string
+     */
+    public function getSchoolID()
+    {
+        return $this->schoolID;
+    }
+}

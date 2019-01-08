@@ -1,0 +1,552 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use FOS\UserBundle\Model\User as BaseUser;
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+/**
+ * User
+ *
+ * @ORM\Table(name="fos_user")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
+ */
+class User extends BaseUser
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    public function __construct()
+    {
+        parent::__construct();
+        // your own logic
+        $this->niveaux = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Many Users have Many groupes/niveaux.
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Groupe", inversedBy="users")
+     * @ORM\JoinTable(name="users_niveaux")
+     */
+    private $niveaux;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\School")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $school;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nom", type="string", length=255, nullable=true)
+     */
+    private $nom;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="prenom", type="string", length=255, nullable=true)
+     */
+    private $prenom;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="typeCompte", type="string", length=100, nullable=true)
+     */
+    private $typeCompte;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="isParent", type="boolean", nullable=true)
+     */
+    private $isParent;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="isChild", type="boolean", nullable=true)
+     */
+    private $isChild;
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="isChauffeur", type="boolean", nullable=true)
+     */
+    private $isChauffeur;
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="isAssistante", type="boolean", nullable=true)
+     */
+    private $isAssistante;
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="isTeacher", type="boolean", nullable=true)
+     */
+    private $isTeacher;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="schoolName", type="string", length=255, nullable=true)
+     */
+    private $schoolName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="childName", type="string", length=255, nullable=true)
+     */
+    private $childName;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="childrenTopics", type="text", nullable=true)
+     */
+    private $childrenTopics;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="parentID", type="string", length=255, nullable=true)
+     */
+    private $parentID;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="numeroMatriculeVehicule", type="string", length=255, nullable=true)
+     */
+    private $numeroMatriculeVehicule;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="profession", type="string", length=255, nullable=true)
+     */
+    private $profession;
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="isOtherTypeAccount", type="boolean", nullable=true)
+     */
+    private $isOtherTypeAccount;
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set nom
+     *
+     * @param string $nom
+     *
+     * @return User
+     */
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    /**
+     * Get nom
+     *
+     * @return string
+     */
+    public function getNom()
+    {
+        return $this->nom;
+    }
+
+    /**
+     * Set prenom
+     *
+     * @param string $prenom
+     *
+     * @return User
+     */
+    public function setPrenom($prenom)
+    {
+        $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    /**
+     * Get prenom
+     *
+     * @return string
+     */
+    public function getPrenom()
+    {
+        return $this->prenom;
+    }
+
+    /**
+     * Set typeCompte
+     *
+     * @param string $typeCompte
+     *
+     * @return User
+     */
+    public function setTypeCompte($typeCompte)
+    {
+        $this->typeCompte = $typeCompte;
+
+        return $this;
+    }
+
+    /**
+     * Get typeCompte
+     *
+     * @return string
+     */
+    public function getTypeCompte()
+    {
+        return $this->typeCompte;
+    }
+
+    /**
+     * Set isParent
+     *
+     * @param boolean $isParent
+     *
+     * @return User
+     */
+    public function setIsParent($isParent)
+    {
+        $this->isParent = $isParent;
+
+        return $this;
+    }
+
+    /**
+     * Get isParent
+     *
+     * @return bool
+     */
+    public function getIsParent()
+    {
+        return $this->isParent;
+    }
+
+    /**
+     * Set isChild
+     *
+     * @param boolean $isChild
+     *
+     * @return User
+     */
+    public function setIsChild($isChild)
+    {
+        $this->isChild = $isChild;
+
+        return $this;
+    }
+
+    /**
+     * Get isChild
+     *
+     * @return bool
+     */
+    public function getIsChild()
+    {
+        return $this->isChild;
+    }
+
+    /**
+     * Set schoolName
+     *
+     * @param string $schoolName
+     *
+     * @return User
+     */
+    public function setSchoolName($schoolName)
+    {
+        $this->schoolName = $schoolName;
+
+        return $this;
+    }
+
+    /**
+     * Get schoolName
+     *
+     * @return string
+     */
+    public function getSchoolName()
+    {
+        return $this->schoolName;
+    }
+
+    /**
+     * Set childName
+     *
+     * @param string $childName
+     *
+     * @return User
+     */
+    public function setChildName($childName)
+    {
+        $this->childName = $childName;
+
+        return $this;
+    }
+
+    /**
+     * Get childName
+     *
+     * @return string
+     */
+    public function getChildName()
+    {
+        return $this->childName;
+    }
+
+    /**
+     * Set numeroMatriculeVehicule
+     *
+     * @param string $numeroMatriculeVehicule
+     *
+     * @return User
+     */
+    public function setNumeroMatriculeVehicule($numeroMatriculeVehicule)
+    {
+        $this->numeroMatriculeVehicule = $numeroMatriculeVehicule;
+
+        return $this;
+    }
+
+    /**
+     * Get numeroMatriculeVehicule
+     *
+     * @return string
+     */
+    public function getNumeroMatriculeVehicule()
+    {
+        return $this->numeroMatriculeVehicule;
+    }
+
+    /**
+     * Set school
+     *
+     * @param \AppBundle\Entity\School $school
+     *
+     * @return User
+     */
+    public function setSchool(\AppBundle\Entity\School $school)
+    {
+        $this->school = $school;
+
+        return $this;
+    }
+
+    /**
+     * Get school
+     *
+     * @return \AppBundle\Entity\School
+     */
+    public function getSchool()
+    {
+        return $this->school;
+    }
+
+    /**
+     * Set isChauffeur
+     *
+     * @param boolean $isChauffeur
+     *
+     * @return User
+     */
+    public function setIsChauffeur($isChauffeur)
+    {
+        $this->isChauffeur = $isChauffeur;
+
+        return $this;
+    }
+
+    /**
+     * Get isChauffeur
+     *
+     * @return boolean
+     */
+    public function getIsChauffeur()
+    {
+        return $this->isChauffeur;
+    }
+
+    /**
+     * Set isAssistante
+     *
+     * @param boolean $isAssistante
+     *
+     * @return User
+     */
+    public function setIsAssistante($isAssistante)
+    {
+        $this->isAssistante = $isAssistante;
+
+        return $this;
+    }
+
+    /**
+     * Get isAssistante
+     *
+     * @return boolean
+     */
+    public function getIsAssistante()
+    {
+        return $this->isAssistante;
+    }
+
+    /**
+     * Set parentID
+     *
+     * @param string $parentID
+     *
+     * @return User
+     */
+    public function setParentID($parentID)
+    {
+        $this->parentID = $parentID;
+
+        return $this;
+    }
+
+    /**
+     * Get parentID
+     *
+     * @return string
+     */
+    public function getParentID()
+    {
+        return $this->parentID;
+    }
+
+    /**
+     * Set isTeacher
+     *
+     * @param boolean $isTeacher
+     *
+     * @return User
+     */
+    public function setIsTeacher($isTeacher)
+    {
+        $this->isTeacher = $isTeacher;
+
+        return $this;
+    }
+
+    /**
+     * Get isTeacher
+     *
+     * @return boolean
+     */
+    public function getIsTeacher()
+    {
+        return $this->isTeacher;
+    }
+
+    /**
+     * Set childrenTopics
+     *
+     * @param string $childrenTopics
+     *
+     * @return User
+     */
+    public function setChildrenTopics($childrenTopics)
+    {
+        $this->childrenTopics = $childrenTopics;
+
+        return $this;
+    }
+
+    /**
+     * Get childrenTopics
+     *
+     * @return string
+     */
+    public function getChildrenTopics()
+    {
+        return $this->childrenTopics;
+    }
+
+    /**
+     * Add niveau
+     *
+     * @param \AppBundle\Entity\Groupe $niveau
+     *
+     * @return User
+     */
+    public function addNiveaux(\AppBundle\Entity\Groupe $niveau)
+    {
+        //$this->niveaux[] = $niveaux;
+        if(!$this->getNiveaux()->contains($niveau)){
+            $this->niveaux[] = $niveau;
+            //i added this
+            $niveau->addUser($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Remove niveaux
+     *
+     * @param \AppBundle\Entity\Groupe $niveaux
+     */
+    public function removeNiveaux(\AppBundle\Entity\Groupe $niveaux)
+    {
+        $this->niveaux->removeElement($niveaux);
+    }
+
+    /**
+     * Get niveaux
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getNiveaux()
+    {
+        return $this->niveaux;
+    }
+
+    /**
+     * Set profession
+     *
+     * @param string $profession
+     *
+     * @return User
+     */
+    public function setProfession($profession)
+    {
+        $this->profession = $profession;
+
+        return $this;
+    }
+
+    /**
+     * Get profession
+     *
+     * @return string
+     */
+    public function getProfession()
+    {
+        return $this->profession;
+    }
+}

@@ -1,0 +1,188 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Transport
+ *
+ * @ORM\Table(name="transport")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\TransportRepository")
+ */
+class Transport
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\School")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $school;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="chauffeur", type="string", length=255, nullable=true)
+     */
+    private $chauffeur;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="assistance", type="string", length=255, nullable=true)
+     */
+    private $assistance;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="numeroMatricule", type="string", length=255, nullable=true)
+     */
+    private $numeroMatricule;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="trajet", type="string", length=255, nullable=true)
+     */
+    private $trajet;
+
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set chauffeur
+     *
+     * @param string $chauffeur
+     *
+     * @return Transport
+     */
+    public function setChauffeur($chauffeur)
+    {
+        $this->chauffeur = $chauffeur;
+
+        return $this;
+    }
+
+    /**
+     * Get chauffeur
+     *
+     * @return string
+     */
+    public function getChauffeur()
+    {
+        return $this->chauffeur;
+    }
+
+    /**
+     * Set assistance
+     *
+     * @param string $assistance
+     *
+     * @return Transport
+     */
+    public function setAssistance($assistance)
+    {
+        $this->assistance = $assistance;
+
+        return $this;
+    }
+
+    /**
+     * Get assistance
+     *
+     * @return string
+     */
+    public function getAssistance()
+    {
+        return $this->assistance;
+    }
+
+    /**
+     * Set numeroMatricule
+     *
+     * @param string $numeroMatricule
+     *
+     * @return Transport
+     */
+    public function setNumeroMatricule($numeroMatricule)
+    {
+        $this->numeroMatricule = $numeroMatricule;
+
+        return $this;
+    }
+
+    /**
+     * Get numeroMatricule
+     *
+     * @return string
+     */
+    public function getNumeroMatricule()
+    {
+        return $this->numeroMatricule;
+    }
+
+    /**
+     * Set trajet
+     *
+     * @param string $trajet
+     *
+     * @return Transport
+     */
+    public function setTrajet($trajet)
+    {
+        $this->trajet = $trajet;
+
+        return $this;
+    }
+
+    /**
+     * Get trajet
+     *
+     * @return string
+     */
+    public function getTrajet()
+    {
+        return $this->trajet;
+    }
+
+    /**
+     * Set school
+     *
+     * @param \AppBundle\Entity\School $school
+     *
+     * @return Transport
+     */
+    public function setSchool(\AppBundle\Entity\School $school)
+    {
+        $this->school = $school;
+
+        return $this;
+    }
+
+    /**
+     * Get school
+     *
+     * @return \AppBundle\Entity\School
+     */
+    public function getSchool()
+    {
+        return $this->school;
+    }
+}

@@ -1,0 +1,82 @@
+{% extends 'home.html.twig' %}
+
+{% block body %}
+<div id="wrapper" style="margin-top: -19px;">
+
+    <div id="page-wrapper" class="container">
+        <div class="row">
+            <div class="col-lg-6">
+
+    <h1>Users list</h1>
+
+    <table id="example" class="display nowrap" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Typecompte</th>
+                <th>Isparent</th>
+                <th>Ischild</th>
+                <th>Schoolname</th>
+                <th>Childname</th>
+                <th>Numeromatriculevehicule</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td><a href="{{ path('admin_user_show', { 'id': user.id }) }}">{{ user.id }}</a></td>
+                <td>{{ user.nom }}</td>
+                <td>{{ user.prenom }}</td>
+                <td>{{ user.typeCompte }}</td>
+                <td>{% if user.isParent %}Yes{% else %}No{% endif %}</td>
+                <td>{% if user.isChild %}Yes{% else %}No{% endif %}</td>
+                <td>{{ user.schoolName }}</td>
+                <td>{{ user.childName }}</td>
+                <td>{{ user.numeroMatriculeVehicule }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('admin_user_show', { 'id': user.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('admin_user_edit', { 'id': user.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_user_new') }}">Create a new user</a>
+        </li>
+    </ul>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#example').dataTable({
+                //responsive: false
+                //select: true
+                dom: 'Bfrtip',
+                buttons: [
+                    //'copy', 'csv', 'excel', 'pdf', 'print'
+                    'copy', 'csv', 'excel', 'print'
+                ]
+            });
+        });
+    </script>
+
+{% endblock %}

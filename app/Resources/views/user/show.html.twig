@@ -1,0 +1,60 @@
+{% extends 'home.html.twig' %}
+
+{% block body %}
+    <h1>User</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ user.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ user.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ user.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Typecompte</th>
+                <td>{{ user.typeCompte }}</td>
+            </tr>
+            <tr>
+                <th>Isparent</th>
+                <td>{% if user.isParent %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Ischild</th>
+                <td>{% if user.isChild %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Schoolname</th>
+                <td>{{ user.schoolName }}</td>
+            </tr>
+            <tr>
+                <th>Childname</th>
+                <td>{{ user.childName }}</td>
+            </tr>
+            <tr>
+                <th>Numeromatriculevehicule</th>
+                <td>{{ user.numeroMatriculeVehicule }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_user_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('admin_user_edit', { 'id': user.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

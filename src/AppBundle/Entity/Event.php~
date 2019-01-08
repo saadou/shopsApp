@@ -1,0 +1,227 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+/**
+ * Event
+ *
+ * @ORM\Table(name="event")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\EventRepository")
+ */
+class Event
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="groupe", type="string", length=255, nullable=true)
+     */
+    private $groupe;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="title", type="string", length=255, nullable=true)
+     */
+    private $title;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text", nullable=true)
+     */
+    private $description;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="eventDate", type="date", nullable=true)
+     */
+    private $eventDate;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="scheduledOn", type="date", nullable=true)
+     */
+    private $scheduledOn;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\School")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $school;
+
+    /**
+     * @ORM\Column(type="string")
+     *
+     * @Assert\NotBlank(message="Ajouter une image jpg")
+     * @Assert\File(mimeTypes={ "image/jpeg" })
+     */
+    private $image;
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set groupe
+     *
+     * @param string $groupe
+     *
+     * @return Event
+     */
+    public function setGroupe($groupe)
+    {
+        $this->groupe = $groupe;
+
+        return $this;
+    }
+
+    /**
+     * Get groupe
+     *
+     * @return string
+     */
+    public function getGroupe()
+    {
+        return $this->groupe;
+    }
+
+    /**
+     * Set title
+     *
+     * @param string $title
+     *
+     * @return Event
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return Event
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set eventDate
+     *
+     * @param \DateTime $eventDate
+     *
+     * @return Event
+     */
+    public function setEventDate($eventDate)
+    {
+        $this->eventDate = $eventDate;
+
+        return $this;
+    }
+
+    /**
+     * Get eventDate
+     *
+     * @return \DateTime
+     */
+    public function getEventDate()
+    {
+        return $this->eventDate;
+    }
+
+    /**
+     * Set scheduledOn
+     *
+     * @param \DateTime $scheduledOn
+     *
+     * @return Event
+     */
+    public function setScheduledOn($scheduledOn)
+    {
+        $this->scheduledOn = $scheduledOn;
+
+        return $this;
+    }
+
+    /**
+     * Get scheduledOn
+     *
+     * @return \DateTime
+     */
+    public function getScheduledOn()
+    {
+        return $this->scheduledOn;
+    }
+
+    /**
+     * Set school
+     *
+     * @param \AppBundle\Entity\School $school
+     *
+     * @return Event
+     */
+    public function setSchool(\AppBundle\Entity\School $school)
+    {
+        $this->school = $school;
+
+        return $this;
+    }
+
+    /**
+     * Get school
+     *
+     * @return \AppBundle\Entity\School
+     */
+    public function getSchool()
+    {
+        return $this->school;
+    }
+}

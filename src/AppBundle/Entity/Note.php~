@@ -1,0 +1,319 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Note
+ *
+ * @ORM\Table(name="note")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\NoteRepository")
+ */
+class Note
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="resultat", type="string", length=255, nullable=true)
+     */
+    private $resultat;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="coef", type="integer", nullable=true)
+     */
+    private $coef;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="etudiant", type="string", length=255, nullable=true)
+     */
+    private $etudiant;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="etudiantID", type="string", length=100, nullable=true)
+     */
+    private $etudiantID;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="niveau", type="string", length=255, nullable=true)
+     */
+    private $niveau;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="niveauID", type="string", length=100, nullable=true)
+     */
+    private $niveauID;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="matiereName", type="string", length=255, nullable=true)
+     */
+    private $matiereName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="matiereID", type="string", length=255, nullable=true)
+     */
+    private $matiereID;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="isPublished", type="boolean", nullable=true)
+     */
+    private $isPublished;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255, unique=true)
+     */
+    private $name;
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set resultat
+     *
+     * @param string $resultat
+     *
+     * @return Note
+     */
+    public function setResultat($resultat)
+    {
+        $this->resultat = $resultat;
+
+        return $this;
+    }
+
+    /**
+     * Get resultat
+     *
+     * @return string
+     */
+    public function getResultat()
+    {
+        return $this->resultat;
+    }
+
+    /**
+     * Set coef
+     *
+     * @param integer $coef
+     *
+     * @return Note
+     */
+    public function setCoef($coef)
+    {
+        $this->coef = $coef;
+
+        return $this;
+    }
+
+    /**
+     * Get coef
+     *
+     * @return int
+     */
+    public function getCoef()
+    {
+        return $this->coef;
+    }
+
+    /**
+     * Set etudiant
+     *
+     * @param string $etudiant
+     *
+     * @return Note
+     */
+    public function setEtudiant($etudiant)
+    {
+        $this->etudiant = $etudiant;
+
+        return $this;
+    }
+
+    /**
+     * Get etudiant
+     *
+     * @return string
+     */
+    public function getEtudiant()
+    {
+        return $this->etudiant;
+    }
+
+    /**
+     * Set etudiantID
+     *
+     * @param string $etudiantID
+     *
+     * @return Note
+     */
+    public function setEtudiantID($etudiantID)
+    {
+        $this->etudiantID = $etudiantID;
+
+        return $this;
+    }
+
+    /**
+     * Get etudiantID
+     *
+     * @return string
+     */
+    public function getEtudiantID()
+    {
+        return $this->etudiantID;
+    }
+
+    /**
+     * Set niveau
+     *
+     * @param string $niveau
+     *
+     * @return Note
+     */
+    public function setNiveau($niveau)
+    {
+        $this->niveau = $niveau;
+
+        return $this;
+    }
+
+    /**
+     * Get niveau
+     *
+     * @return string
+     */
+    public function getNiveau()
+    {
+        return $this->niveau;
+    }
+
+    /**
+     * Set niveauID
+     *
+     * @param string $niveauID
+     *
+     * @return Note
+     */
+    public function setNiveauID($niveauID)
+    {
+        $this->niveauID = $niveauID;
+
+        return $this;
+    }
+
+    /**
+     * Get niveauID
+     *
+     * @return string
+     */
+    public function getNiveauID()
+    {
+        return $this->niveauID;
+    }
+
+    /**
+     * Set matiereName
+     *
+     * @param string $matiereName
+     *
+     * @return Note
+     */
+    public function setMatiereName($matiereName)
+    {
+        $this->matiereName = $matiereName;
+
+        return $this;
+    }
+
+    /**
+     * Get matiereName
+     *
+     * @return string
+     */
+    public function getMatiereName()
+    {
+        return $this->matiereName;
+    }
+
+    /**
+     * Set matiereID
+     *
+     * @param string $matiereID
+     *
+     * @return Note
+     */
+    public function setMatiereID($matiereID)
+    {
+        $this->matiereID = $matiereID;
+
+        return $this;
+    }
+
+    /**
+     * Get matiereID
+     *
+     * @return string
+     */
+    public function getMatiereID()
+    {
+        return $this->matiereID;
+    }
+
+    /**
+     * Set isPublished
+     *
+     * @param boolean $isPublished
+     *
+     * @return Note
+     */
+    public function setIsPublished($isPublished)
+    {
+        $this->isPublished = $isPublished;
+
+        return $this;
+    }
+
+    /**
+     * Get isPublished
+     *
+     * @return boolean
+     */
+    public function getIsPublished()
+    {
+        return $this->isPublished;
+    }
+}
