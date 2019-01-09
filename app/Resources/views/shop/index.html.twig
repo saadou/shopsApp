@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Shops list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>City</th>
+                <th>Country</th>
+                <th>Lat</th>
+                <th>Longt</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for shop in shops %}
+            <tr>
+                <td><a href="{{ path('admin_shop_show', { 'id': shop.id }) }}">{{ shop.id }}</a></td>
+                <td>{{ shop.name }}</td>
+                <td>{{ shop.city }}</td>
+                <td>{{ shop.country }}</td>
+                <td>{{ shop.lat }}</td>
+                <td>{{ shop.longt }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('admin_shop_show', { 'id': shop.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('admin_shop_edit', { 'id': shop.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_shop_new') }}">Create a new shop</a>
+        </li>
+    </ul>
+{% endblock %}

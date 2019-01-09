@@ -23,123 +23,64 @@ class User extends BaseUser
      */
     protected $id;
 
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="lat", type="float", nullable=true)
+     */
+    private $lat;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="longt", type="float", nullable=true)
+     */
+    private $longt;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="city", type="string", length=255)
+     */
+    private $city;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="country", type="string", length=255, nullable=true)
+     */
+    private $country;
+    /**
+     * @ORM\OneToMany(targetEntity="userShop", mappedBy="user", fetch="EXTRA_LAZY")
+     */
+    protected $usersShops;
+
     public function __construct()
     {
         parent::__construct();
         // your own logic
-        $this->niveaux = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->usersShops = new \Doctrine\Common\Collections\ArrayCollection();
+        //$this->niveaux = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
-    /**
+    /*
      * Many Users have Many groupes/niveaux.
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Groupe", inversedBy="users")
      * @ORM\JoinTable(name="users_niveaux")
-     */
+
     private $niveaux;
+    */
 
-    /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\School")
-     * @ORM\JoinColumn(nullable=true)
-     */
-    private $school;
-
-    /**
-     * @var string
+    /*
      *
-     * @ORM\Column(name="nom", type="string", length=255, nullable=true)
-     */
-    private $nom;
-
-    /**
-     * @var string
+     * add this in func add niveau
      *
-     * @ORM\Column(name="prenom", type="string", length=255, nullable=true)
+     * if(!$this->getNiveaux()->contains($niveau)){
+            $this->niveaux[] = $niveau;
+            //i added this
+            $niveau->addUser($this);
+        }
+    *
      */
-    private $prenom;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="typeCompte", type="string", length=100, nullable=true)
-     */
-    private $typeCompte;
-
-    /**
-     * @var bool
-     *
-     * @ORM\Column(name="isParent", type="boolean", nullable=true)
-     */
-    private $isParent;
-
-    /**
-     * @var bool
-     *
-     * @ORM\Column(name="isChild", type="boolean", nullable=true)
-     */
-    private $isChild;
-    /**
-     * @var bool
-     *
-     * @ORM\Column(name="isChauffeur", type="boolean", nullable=true)
-     */
-    private $isChauffeur;
-    /**
-     * @var bool
-     *
-     * @ORM\Column(name="isAssistante", type="boolean", nullable=true)
-     */
-    private $isAssistante;
-    /**
-     * @var bool
-     *
-     * @ORM\Column(name="isTeacher", type="boolean", nullable=true)
-     */
-    private $isTeacher;
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="schoolName", type="string", length=255, nullable=true)
-     */
-    private $schoolName;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="childName", type="string", length=255, nullable=true)
-     */
-    private $childName;
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="childrenTopics", type="text", nullable=true)
-     */
-    private $childrenTopics;
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="parentID", type="string", length=255, nullable=true)
-     */
-    private $parentID;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="numeroMatriculeVehicule", type="string", length=255, nullable=true)
-     */
-    private $numeroMatriculeVehicule;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="profession", type="string", length=255, nullable=true)
-     */
-    private $profession;
-    /**
-     * @var bool
-     *
-     * @ORM\Column(name="isOtherTypeAccount", type="boolean", nullable=true)
-     */
-    private $isOtherTypeAccount;
 
     /**
      * Get id
@@ -151,402 +92,136 @@ class User extends BaseUser
         return $this->id;
     }
 
+
+
+
     /**
-     * Set nom
+     * Add usersShop
      *
-     * @param string $nom
+     * @param \AppBundle\Entity\userShop $usersShop
      *
      * @return User
      */
-    public function setNom($nom)
+    public function addUsersShop(\AppBundle\Entity\userShop $usersShop)
     {
-        $this->nom = $nom;
+        $this->usersShops[] = $usersShop;
 
         return $this;
     }
 
     /**
-     * Get nom
+     * Remove usersShop
      *
-     * @return string
+     * @param \AppBundle\Entity\userShop $usersShop
      */
-    public function getNom()
+    public function removeUsersShop(\AppBundle\Entity\userShop $usersShop)
     {
-        return $this->nom;
+        $this->usersShops->removeElement($usersShop);
     }
 
     /**
-     * Set prenom
-     *
-     * @param string $prenom
-     *
-     * @return User
-     */
-    public function setPrenom($prenom)
-    {
-        $this->prenom = $prenom;
-
-        return $this;
-    }
-
-    /**
-     * Get prenom
-     *
-     * @return string
-     */
-    public function getPrenom()
-    {
-        return $this->prenom;
-    }
-
-    /**
-     * Set typeCompte
-     *
-     * @param string $typeCompte
-     *
-     * @return User
-     */
-    public function setTypeCompte($typeCompte)
-    {
-        $this->typeCompte = $typeCompte;
-
-        return $this;
-    }
-
-    /**
-     * Get typeCompte
-     *
-     * @return string
-     */
-    public function getTypeCompte()
-    {
-        return $this->typeCompte;
-    }
-
-    /**
-     * Set isParent
-     *
-     * @param boolean $isParent
-     *
-     * @return User
-     */
-    public function setIsParent($isParent)
-    {
-        $this->isParent = $isParent;
-
-        return $this;
-    }
-
-    /**
-     * Get isParent
-     *
-     * @return bool
-     */
-    public function getIsParent()
-    {
-        return $this->isParent;
-    }
-
-    /**
-     * Set isChild
-     *
-     * @param boolean $isChild
-     *
-     * @return User
-     */
-    public function setIsChild($isChild)
-    {
-        $this->isChild = $isChild;
-
-        return $this;
-    }
-
-    /**
-     * Get isChild
-     *
-     * @return bool
-     */
-    public function getIsChild()
-    {
-        return $this->isChild;
-    }
-
-    /**
-     * Set schoolName
-     *
-     * @param string $schoolName
-     *
-     * @return User
-     */
-    public function setSchoolName($schoolName)
-    {
-        $this->schoolName = $schoolName;
-
-        return $this;
-    }
-
-    /**
-     * Get schoolName
-     *
-     * @return string
-     */
-    public function getSchoolName()
-    {
-        return $this->schoolName;
-    }
-
-    /**
-     * Set childName
-     *
-     * @param string $childName
-     *
-     * @return User
-     */
-    public function setChildName($childName)
-    {
-        $this->childName = $childName;
-
-        return $this;
-    }
-
-    /**
-     * Get childName
-     *
-     * @return string
-     */
-    public function getChildName()
-    {
-        return $this->childName;
-    }
-
-    /**
-     * Set numeroMatriculeVehicule
-     *
-     * @param string $numeroMatriculeVehicule
-     *
-     * @return User
-     */
-    public function setNumeroMatriculeVehicule($numeroMatriculeVehicule)
-    {
-        $this->numeroMatriculeVehicule = $numeroMatriculeVehicule;
-
-        return $this;
-    }
-
-    /**
-     * Get numeroMatriculeVehicule
-     *
-     * @return string
-     */
-    public function getNumeroMatriculeVehicule()
-    {
-        return $this->numeroMatriculeVehicule;
-    }
-
-    /**
-     * Set school
-     *
-     * @param \AppBundle\Entity\School $school
-     *
-     * @return User
-     */
-    public function setSchool(\AppBundle\Entity\School $school)
-    {
-        $this->school = $school;
-
-        return $this;
-    }
-
-    /**
-     * Get school
-     *
-     * @return \AppBundle\Entity\School
-     */
-    public function getSchool()
-    {
-        return $this->school;
-    }
-
-    /**
-     * Set isChauffeur
-     *
-     * @param boolean $isChauffeur
-     *
-     * @return User
-     */
-    public function setIsChauffeur($isChauffeur)
-    {
-        $this->isChauffeur = $isChauffeur;
-
-        return $this;
-    }
-
-    /**
-     * Get isChauffeur
-     *
-     * @return boolean
-     */
-    public function getIsChauffeur()
-    {
-        return $this->isChauffeur;
-    }
-
-    /**
-     * Set isAssistante
-     *
-     * @param boolean $isAssistante
-     *
-     * @return User
-     */
-    public function setIsAssistante($isAssistante)
-    {
-        $this->isAssistante = $isAssistante;
-
-        return $this;
-    }
-
-    /**
-     * Get isAssistante
-     *
-     * @return boolean
-     */
-    public function getIsAssistante()
-    {
-        return $this->isAssistante;
-    }
-
-    /**
-     * Set parentID
-     *
-     * @param string $parentID
-     *
-     * @return User
-     */
-    public function setParentID($parentID)
-    {
-        $this->parentID = $parentID;
-
-        return $this;
-    }
-
-    /**
-     * Get parentID
-     *
-     * @return string
-     */
-    public function getParentID()
-    {
-        return $this->parentID;
-    }
-
-    /**
-     * Set isTeacher
-     *
-     * @param boolean $isTeacher
-     *
-     * @return User
-     */
-    public function setIsTeacher($isTeacher)
-    {
-        $this->isTeacher = $isTeacher;
-
-        return $this;
-    }
-
-    /**
-     * Get isTeacher
-     *
-     * @return boolean
-     */
-    public function getIsTeacher()
-    {
-        return $this->isTeacher;
-    }
-
-    /**
-     * Set childrenTopics
-     *
-     * @param string $childrenTopics
-     *
-     * @return User
-     */
-    public function setChildrenTopics($childrenTopics)
-    {
-        $this->childrenTopics = $childrenTopics;
-
-        return $this;
-    }
-
-    /**
-     * Get childrenTopics
-     *
-     * @return string
-     */
-    public function getChildrenTopics()
-    {
-        return $this->childrenTopics;
-    }
-
-    /**
-     * Add niveau
-     *
-     * @param \AppBundle\Entity\Groupe $niveau
-     *
-     * @return User
-     */
-    public function addNiveaux(\AppBundle\Entity\Groupe $niveau)
-    {
-        //$this->niveaux[] = $niveaux;
-        if(!$this->getNiveaux()->contains($niveau)){
-            $this->niveaux[] = $niveau;
-            //i added this
-            $niveau->addUser($this);
-        }
-
-        return $this;
-    }
-
-    /**
-     * Remove niveaux
-     *
-     * @param \AppBundle\Entity\Groupe $niveaux
-     */
-    public function removeNiveaux(\AppBundle\Entity\Groupe $niveaux)
-    {
-        $this->niveaux->removeElement($niveaux);
-    }
-
-    /**
-     * Get niveaux
+     * Get usersShops
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getNiveaux()
+    public function getUsersShops()
     {
-        return $this->niveaux;
+        return $this->usersShops;
     }
 
     /**
-     * Set profession
+     * Set lat
      *
-     * @param string $profession
+     * @param float $lat
      *
      * @return User
      */
-    public function setProfession($profession)
+    public function setLat($lat)
     {
-        $this->profession = $profession;
+        $this->lat = $lat;
 
         return $this;
     }
 
     /**
-     * Get profession
+     * Get lat
+     *
+     * @return float
+     */
+    public function getLat()
+    {
+        return $this->lat;
+    }
+
+    /**
+     * Set longt
+     *
+     * @param float $longt
+     *
+     * @return User
+     */
+    public function setLongt($longt)
+    {
+        $this->longt = $longt;
+
+        return $this;
+    }
+
+    /**
+     * Get longt
+     *
+     * @return float
+     */
+    public function getLongt()
+    {
+        return $this->longt;
+    }
+
+    /**
+     * Set city
+     *
+     * @param string $city
+     *
+     * @return User
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    /**
+     * Get city
      *
      * @return string
      */
-    public function getProfession()
+    public function getCity()
     {
-        return $this->profession;
+        return $this->city;
+    }
+
+    /**
+     * Set country
+     *
+     * @param string $country
+     *
+     * @return User
+     */
+    public function setCountry($country)
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+    /**
+     * Get country
+     *
+     * @return string
+     */
+    public function getCountry()
+    {
+        return $this->country;
     }
 }

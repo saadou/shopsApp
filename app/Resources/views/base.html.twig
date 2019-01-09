@@ -94,10 +94,10 @@
         <ul class="navbar-nav mr-auto">
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Stores Nearby <span class="sr-only">cc</span></a>
+                    <a class="nav-link" href="{{ path('main') }}">Stores Nearby <span class="sr-only">cc</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Favorite Stores</a>
+                    <a class="nav-link" href="{{ path('favorite') }}">Favorite Stores</a>
                 </li>
             {% endif %}
             {#
